@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.git
+.agents
+.vscode
+.idea
+*.log
+result-test
+internal_uploads
+test-workflow.ts

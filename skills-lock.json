@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "skills": {
+    "developing-genkit-js": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "2fa9adb27f7cfc4635decebea65222cd56e36b5de34781f7862be888504c04f4"
+    },
+    "firebase-ai-logic": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "3b3d8994f2ac2e747a1f203488844a7e17b8a25c38e636b221903ae90e3b7c32"
+    },
+    "firebase-app-hosting-basics": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "7f0e0330510b4e6b06bcede472cebb183a491b8a0098f92d7563454c40d78050"
+    },
+    "firebase-auth-basics": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "ff79d278c0968f297d60f37532c32fd3b8bd9aad9c64b9f354585c701e80112a"
+    },
+    "firebase-basics": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "97e5107e2eb84b20572e848102e5f97bd596ac69a2c4aafccda6ba99fadb3bbc"
+    },
+    "firebase-data-connect": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "e7e35c29c4851d495a7417c4331666119d2492e914a08a8d006f1471a554e09f"
+    },
+    "firebase-firestore-enterprise-native-mode": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "528bd602aa93a4409842a4e6f9888b8438521953253b0a629aeaf10603823bf9"
+    },
+    "firebase-firestore-standard": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "ab2332607f40ae408e9c56e177b02fad55e071bfac4c2035a16ce0787768953e"
+    },
+    "firestore-security-rules-auditor": {
+      "source": "firebase/skills",
+      "sourceType": "github",
+      "computedHash": "8b797ed45d9d171b3a88f4980d72fc4accd1257206c555f4935599f9b9fd7d28"
+    },
+    "qdrant-clients-sdk": {
+      "source": "qdrant/skills",
+      "sourceType": "github",
+      "computedHash": "141f4f633e3b60d94149f4bd573d6106ee2eb7ab070dc99249a221d173c01946"
+    },
+    "qdrant-deployment-options": {
+      "source": "qdrant/skills",
+      "sourceType": "github",
+      "computedHash": "7e10de46a33e9422f27a0c03da63eb18c86ccc73438c847928e789370251b376"
+    },
+    "qdrant-model-migration": {
+      "source": "qdrant/skills",
+      "sourceType": "github",
+      "computedHash": "9354dcdd3742ecbccdd86c59110f5f163adbd0b0e992d0bb0d267f2e429e1d77"
+    },
+    "qdrant-monitoring": {
+      "source": "qdrant/skills",
+      "sourceType": "github",
+      "computedHash": "b4f236b6875bce2c4690b0da201950a03204239f3a5351f2f1c3375584edc8c1"
+    },
+    "qdrant-performance-optimization": {
+      "source": "qdrant/skills",
+      "sourceType": "github",
+      "computedHash": "00faabaa7ea9f3eeda8ab9adf93fe735c0d96ac7a45cc3c50b3d4b70673d0c19"
+    },
+    "qdrant-scaling": {
+      "source": "qdrant/skills",
+      "sourceType": "github",
+      "computedHash": "dc9c4d0e7104a77ebd9d55c884efc25fb79d3ebec284aabac986416ece018e44"
+    },
+    "qdrant-search-quality": {
+      "source": "qdrant/skills",
+      "sourceType": "github",
+      "computedHash": "869383fcf900f621c9fd3c52bce7e5c9abd46f8d8cf9fbaf81635253aeb20739"
+    },
+    "qdrant-version-upgrade": {
+      "source": "qdrant/skills",
+      "sourceType": "github",
+      "computedHash": "fb7d84a8ddc0df9b42d75f30b4d2fb2f9108a7dd348e60578379d20705d6a424"
+    }
+  }
+}
