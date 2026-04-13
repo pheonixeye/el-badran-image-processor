@@ -6,7 +6,7 @@ import { config } from '../config/index.js';
 const firebaseApp = initializeApp(config.firebase);
 const db = initializeFirestore(firebaseApp, {
   experimentalForceLongPolling: true
-}, "ai-studio-3aaeab60-998b-4c3e-b820-73337fce910e",);
+}, config.firebase.dbName);
 
 /**
  * Fetches the document from the `products` collection by its Firestore ID

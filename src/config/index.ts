@@ -20,6 +20,27 @@ export const config = {
     projectId: process.env.FIREBASE_PROJECT_ID || '',
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET || '',
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || '',
-    appId: process.env.FIREBASE_APP_ID || ''
+    appId: process.env.FIREBASE_APP_ID || '',
+    dbName: process.env.FIREBASE_DB_NAME || ''
   }
+};
+
+export const validateConfig = () => {
+  const required = [
+    { key: 'GEMINI_API_KEY', value: config.gemini.apiKey },
+    { key: 'QDRANT_URL', value: config.qdrant.url },
+    { key: 'QDRANT_API_KEY', value: config.qdrant.apiKey },
+    { key: 'FIREBASE_PROJECT_ID', value: config.firebase.projectId }
+  ];
+
+  const missing = required.filter(item => !item.value);
+
+  if (missing.length > 0) {
+    const errorMsg = `FATAL: Missing required environment variables: ${missing.map(m => m.key).join(', ')}`;
+    console.error(errorMsg);
+    // In production, we want to fail fast
+    process.exit(1);
+  }
+
+  console.log('✅ Configuration validated successfully.');
 };
