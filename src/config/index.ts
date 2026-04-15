@@ -22,6 +22,12 @@ export const config = {
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || '',
     appId: process.env.FIREBASE_APP_ID || '',
     dbName: process.env.FIREBASE_DB_NAME || ''
+  },
+  s3 : {
+    bucketName: process.env.S3_BUCKET_NAME || '',
+    endpoint: process.env.S3_ENDPOINT || '',
+    accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
   }
 };
 
