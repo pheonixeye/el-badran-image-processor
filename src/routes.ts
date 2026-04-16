@@ -48,6 +48,7 @@ router.post("/upload", upload.single("image"), async (req, res) => {
       pointId = await saveEmbedding(vector, {
         originalName: req.file.originalname,
         s3Url,
+        ...(req.body.category && { category: req.body.category }),
       });
 
     } catch (innerError) {
@@ -88,7 +89,8 @@ router.post("/search", upload.single("image"), async (req, res) => {
     const vector = await generateImageEmbedding(processedImageBuffer);
 
     // 3. Search Qdrant
-    const results = await searchByEmbedding(vector);
+    const category = req.body.category;
+    const results = await searchByEmbedding(vector, category);
 
     // 4. Hydrate Qdrant results with Firestore image URLs
     const hydratedResults = await Promise.all(

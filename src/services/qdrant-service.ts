@@ -57,11 +57,23 @@ export const saveEmbedding = async (vector: number[], metadata: Record<string, a
 /**
  * Searches Qdrant using an embedding vector and returns the top matches.
  */
-export const searchByEmbedding = async (vector: number[], limit: number = 5) => {
+export const searchByEmbedding = async (vector: number[], category?: string, limit: number = 5) => {
+  const filter = category ? {
+    must: [
+      {
+        key: 'category',
+        match: {
+          value: category
+        }
+      }
+    ]
+  } : undefined;
+
   const results = await client.search(config.qdrant.collectionName, {
     vector,
     limit,
-    with_payload: true
+    with_payload: true,
+    filter
   });
 
   return results;
