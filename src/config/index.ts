@@ -36,7 +36,8 @@ export const validateConfig = () => {
     { key: 'GEMINI_API_KEY', value: config.gemini.apiKey },
     { key: 'QDRANT_URL', value: config.qdrant.url },
     { key: 'QDRANT_API_KEY', value: config.qdrant.apiKey },
-    { key: 'FIREBASE_PROJECT_ID', value: config.firebase.projectId }
+    { key: 'FIREBASE_PROJECT_ID', value: config.firebase.projectId },
+    { key: 'S3_BUCKET_NAME', value: config.s3.bucketName },
   ];
 
   const missing = required.filter(item => !item.value);

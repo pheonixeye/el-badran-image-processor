@@ -2,10 +2,12 @@
 
 ## check that the updated dependencies work with no errors
 
-## get the missing env vars
-
 ## check the s3 bucket config
 
 ## generate prettier config
 
 ## generate eslint config
+
+## add a better logger - log ip address - request origin
+
+## add a middleware to block unwanted requests

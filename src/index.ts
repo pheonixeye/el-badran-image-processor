@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import { config, validateConfig } from "./config/index.js";
 import routes from "./routes.js";
+import { requestLogger } from "./middlewares/logger.js";
+import { spamBlocker } from "./middlewares/spam-blocker.js";
 import { initializeCollection } from "./services/qdrant-service.js";
 
 // Validate configuration before anything else
@@ -12,11 +14,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Basic request logger
-app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
-  next();
-});
+// Use custom Morgan logger
+app.use(requestLogger);
+
+// Use spam blocker middleware to deny malicious paths early
+app.use(spamBlocker);
 
 app.use("/api", routes);
 

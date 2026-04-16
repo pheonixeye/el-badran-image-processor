@@ -6,6 +6,7 @@ import { processImage } from "./services/image-processor.js";
 import { generateImageEmbedding } from "./services/embedding-service.js";
 import { saveEmbedding, searchByEmbedding } from "./services/qdrant-service.js";
 import { getImageUrlFromFirestore } from "./services/firebase-service.js";
+import { uploadToS3, deleteFromS3 } from "./services/s3_service.js";
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -34,21 +35,37 @@ router.post("/upload", upload.single("image"), async (req, res) => {
     // 2. Generate vector embeddings
     const vector = await generateImageEmbedding(processedImageBuffer);
 
-    // 3. Save processed image directly to disk for future retrieval
-    const uniqueFileName = `${Date.now()}-${req.file.originalname}`;
-    const localFilePath = path.join(uploadsDir, uniqueFileName);
-    fs.writeFileSync(localFilePath, processedImageBuffer);
+    // 3. Setup variables for S3 upload and atomicity
+    const uniqueFileName = `${Date.now()}-${req.file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+    let s3Url: string | null = null;
+    let pointId: string | undefined;
 
-    // 4. Save to Qdrant with the file path as metadata
-    const pointId = await saveEmbedding(vector, {
-      originalName: req.file.originalname,
-      localPath: localFilePath,
-    });
+    try {
+      // Upload to S3
+      s3Url = await uploadToS3(processedImageBuffer, uniqueFileName);
+
+      // Save to Qdrant with the S3 URL
+      pointId = await saveEmbedding(vector, {
+        originalName: req.file.originalname,
+        s3Url,
+      });
+
+    } catch (innerError) {
+      if (s3Url && !pointId) {
+        console.log(`Rolling back S3 upload for ${uniqueFileName} due to Qdrant failure.`);
+        try {
+          await deleteFromS3(uniqueFileName);
+        } catch (rollbackError) {
+           console.error(`Failed to rollback S3 upload for ${uniqueFileName}:`, rollbackError);
+        }
+      }
+      throw innerError; // Let the outer catch handle the response
+    }
 
     res.status(201).json({
       message: "Image uploaded and embedded successfully.",
       pointId,
-      localPath: localFilePath,
+      s3Url,
     });
   } catch (error: any) {
     console.error("Error in /upload:", error);
