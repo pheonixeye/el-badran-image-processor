@@ -49,6 +49,7 @@ router.post("/upload", upload.single("image"), async (req, res) => {
         originalName: req.file.originalname,
         s3Url,
         ...(req.body.category && { category: req.body.category }),
+        ...(req.body.firestoreId && { firestoreId: req.body.firestoreId }),
       });
 
     } catch (innerError) {
@@ -57,7 +58,7 @@ router.post("/upload", upload.single("image"), async (req, res) => {
         try {
           await deleteFromS3(uniqueFileName);
         } catch (rollbackError) {
-           console.error(`Failed to rollback S3 upload for ${uniqueFileName}:`, rollbackError);
+          console.error(`Failed to rollback S3 upload for ${uniqueFileName}:`, rollbackError);
         }
       }
       throw innerError; // Let the outer catch handle the response
